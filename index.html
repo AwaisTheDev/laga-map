@@ -15,6 +15,11 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <script>
+      // Marks the document when it runs inside an iframe, so the map fills the
+      // frame the host page sized instead of imposing its own aspect ratio.
+      if (window.self !== window.top) document.documentElement.classList.add("is-embedded");
+    </script>
   </head>
   <body>
     <section class="map-section" id="map-section" aria-label="Interactive resort map">

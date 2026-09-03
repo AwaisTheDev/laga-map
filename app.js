@@ -395,6 +395,7 @@ function fitCanvas() {
 
 function updateTransform() {
   fitCanvas();
+  viewport.classList.toggle("is-zoomed", zoom > 1);
   canvas.style.transform = `translate(calc(-50% + ${panX}px), calc(-50% + ${panY}px)) scale(${zoom})`;
   positionCard();
   if (hoverId !== null) positionHoverLabel(hoverId);
@@ -519,7 +520,9 @@ function wireEvents() {
   document.querySelector("#reset-map").addEventListener("click", resetMap);
   document.querySelector("#card-close").addEventListener("click", clearSelection);
   legendToggle.addEventListener("click", () => setLegendOpen(legend.dataset.open !== "true"));
-  window.addEventListener("resize", updateTransform);
+  // Observing the section rather than the window also catches an iframe or a
+  // fluid layout resizing the map while the window itself stays put.
+  new ResizeObserver(() => updateTransform()).observe(mapPanel);
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") clearSelection();
