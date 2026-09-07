@@ -19,8 +19,8 @@ const PLACES = [
     name: "Fire Pit",
     type: "Lounge",
     description: "An open-air fire pit between the wellness facilities and the club pool.",
-    // Offset up and right so the pin does not cover the pit itself.
-    marker: [368, 202],
+    // Sit just off the top-right of the pit so the fire stays visible.
+    marker: [358, 216],
   },
   { id: 6, name: "Club Pool", type: "Pool", description: "A quiet pool at the heart of the wellness and dining courtyard." },
   { id: 7, name: "Wellness Facilities", type: "Wellness", description: "Wellness facilities set beside the club pool and gardens." },
@@ -79,7 +79,6 @@ const markerLayer = document.querySelector("#marker-layer");
 const mapArt = document.querySelector("#map-art");
 const mapPanel = document.querySelector("#map-section");
 const placeCard = document.querySelector("#place-card");
-const placeNumber = document.querySelector("#place-number");
 const placeType = document.querySelector("#place-type");
 const placeName = document.querySelector("#place-name");
 const placeDescription = document.querySelector("#place-description");
@@ -396,7 +395,6 @@ function selectPlace(id) {
     item.classList.toggle("is-active", Number(item.dataset.locationId) === id);
   });
 
-  placeNumber.textContent = String(place.id);
   placeType.textContent = place.type;
   placeName.textContent = place.name;
   placeDescription.textContent = place.description;

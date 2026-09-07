@@ -391,8 +391,6 @@ p {
   left: 0;
   display: grid;
   width: min(300px, calc(100% - 28px));
-  grid-template-columns: 36px minmax(0, 1fr);
-  gap: 12px;
   padding: 15px 38px 15px 15px;
   border: 1px solid var(--line);
   border-radius: 6px;
@@ -407,18 +405,6 @@ p {
 
 .place-card[hidden] {
   display: none;
-}
-
-.place-number {
-  display: grid;
-  width: 36px;
-  height: 36px;
-  place-items: center;
-  border-radius: 50%;
-  color: white;
-  background: var(--accent);
-  font-size: 13px;
-  font-weight: 600;
 }
 
 .place-type {
