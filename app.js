@@ -531,7 +531,9 @@ function wireEvents() {
 
 async function start() {
   renderLegend();
-  setLegendOpen(mapPanel.clientHeight > 520 && window.innerWidth > 720);
+  // Phones and the embed's narrow breakpoints start with the legend closed so
+  // it does not cover the artwork. Desktop keeps it open as a directory.
+  setLegendOpen(mapPanel.clientWidth > 720);
   wireEvents();
   updateTransform();
 
