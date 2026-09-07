@@ -14,21 +14,22 @@ const PLACES = [
   },
   { id: 3, name: "Padel Courts", type: "Activities", description: "The padel court complex near the main resort entrance." },
   { id: 4, name: "Security Post", type: "Services", description: "The security post at the resort's northern entrance." },
-  { id: 5, name: "Club Pool", type: "Pool", description: "A quiet pool at the heart of the wellness and dining courtyard." },
-  { id: 6, name: "Wellness Facilities", type: "Wellness", description: "Wellness facilities set beside the club pool and gardens." },
-  { id: 7, name: "Sunset Bar", type: "Food & drink", description: "A small bar overlooking the ocean-facing edge of the resort." },
-  { id: 8, name: "Restaurant", type: "Food & drink", description: "The main restaurant, arranged around the central courtyard." },
-  { id: 9, name: "Parking", type: "Arrival", description: "Guest parking close to reception and the main entrance." },
-  { id: 10, name: "Kids Play Area", type: "Activities", description: "A dedicated play area tucked between the restaurant and gardens." },
-  { id: 11, name: "Resort Reception", type: "Arrival", description: "The central reception for arrivals, assistance and resort information." },
-  { id: 12, name: "Villa Aruna", type: "Villa", description: "The Villa Aruna residences in the upper villa garden." },
-  { id: 13, name: "Wooden Walkway", type: "Path", description: "The ocean-side wooden walkway connecting the resort grounds." },
-  { id: 14, name: "Villa Laga", type: "Villa", description: "The Villa Laga residences in the central garden." },
-  { id: 15, name: "Villa Muara", type: "Villa", description: "The Villa Muara residences closest to the beach garden." },
-  { id: 16, name: "Beachfront Pool", type: "Pool", description: "The long beachfront pool with views toward the ocean." },
-  { id: 17, name: "The Beach Shack", type: "Food & drink", description: "The beachside pavilion at the eastern end of the resort." },
-  { id: 18, name: "The Beach", type: "Beach", description: "The resort's sandy beachfront and lounging area." },
-  { id: 19, name: "The Groove Groin", type: "Landmark", description: "The stone groin defining the southern edge of the beachfront." },
+  { id: 5, name: "Fire Pit", type: "Lounge", description: "An open-air fire pit between the wellness facilities and the club pool." },
+  { id: 6, name: "Club Pool", type: "Pool", description: "A quiet pool at the heart of the wellness and dining courtyard." },
+  { id: 7, name: "Wellness Facilities", type: "Wellness", description: "Wellness facilities set beside the club pool and gardens." },
+  { id: 8, name: "Sunset Bar", type: "Food & drink", description: "A small bar overlooking the ocean-facing edge of the resort." },
+  { id: 9, name: "Restaurant", type: "Food & drink", description: "The main restaurant, arranged around the central courtyard." },
+  { id: 10, name: "Parking", type: "Arrival", description: "Guest parking close to reception and the main entrance." },
+  { id: 11, name: "Kids Play Area", type: "Activities", description: "A dedicated play area tucked between the restaurant and gardens." },
+  { id: 12, name: "Resort Reception", type: "Arrival", description: "The central reception for arrivals, assistance and resort information." },
+  { id: 13, name: "Villa Aruna", type: "Villa", description: "The Villa Aruna residences in the upper villa garden." },
+  { id: 14, name: "Wooden Walkway", type: "Path", description: "The ocean-side wooden walkway connecting the resort grounds." },
+  { id: 15, name: "Villa Laga", type: "Villa", description: "The Villa Laga residences in the central garden." },
+  { id: 16, name: "Villa Muara", type: "Villa", description: "The Villa Muara residences closest to the beach garden." },
+  { id: 17, name: "Beachfront Pool", type: "Pool", description: "The long beachfront pool with views toward the ocean." },
+  { id: 18, name: "The Beach Shack", type: "Food & drink", description: "The beachside pavilion at the eastern end of the resort." },
+  { id: 19, name: "The Beach", type: "Beach", description: "The resort's sandy beachfront and lounging area." },
+  { id: 20, name: "The Groove Groin", type: "Landmark", description: "The stone groin defining the southern edge of the beachfront." },
 ];
 
 const FILTER_MARKUP = `
@@ -66,6 +67,7 @@ const FILTER_MARKUP = `
 `;
 
 const list = document.querySelector("#legend-list");
+const legendCount = document.querySelector("#legend-count");
 const markerLayer = document.querySelector("#marker-layer");
 const mapArt = document.querySelector("#map-art");
 const mapPanel = document.querySelector("#map-section");
@@ -145,10 +147,9 @@ function buildHitMap() {
     if (w <= 0 || h <= 0) return;
 
     ctx.clearRect(x, y, w, h);
-    group.querySelectorAll("path").forEach((element) => {
-      const definition = element.getAttribute("d");
-      if (!definition) return;
-      const shape = new Path2D(definition);
+    group.querySelectorAll("path, ellipse, circle, rect").forEach((element) => {
+      const shape = outlineOf(element);
+      if (!shape) return;
       ctx.fill(shape);
       ctx.stroke(shape);
     });
@@ -163,6 +164,31 @@ function buildHitMap() {
   });
 
   hitGrid = grid;
+}
+
+// The artwork is drawn almost entirely with <path>, but a few shapes such as
+// the fire pit's scorched ground are primitives.
+function outlineOf(element) {
+  const value = (name) => Number(element.getAttribute(name)) || 0;
+  const shape = new Path2D();
+
+  switch (element.localName) {
+    case "path": {
+      const definition = element.getAttribute("d");
+      return definition ? new Path2D(definition) : null;
+    }
+    case "ellipse":
+      shape.ellipse(value("cx"), value("cy"), value("rx"), value("ry"), 0, 0, Math.PI * 2);
+      return shape;
+    case "circle":
+      shape.arc(value("cx"), value("cy"), value("r"), 0, Math.PI * 2);
+      return shape;
+    case "rect":
+      shape.rect(value("x"), value("y"), value("width"), value("height"));
+      return shape;
+    default:
+      return null;
+  }
 }
 
 function sampleHitMap(x, y) {
@@ -256,6 +282,7 @@ function markerPoint(place) {
 
 function renderLegend() {
   list.replaceChildren();
+  legendCount.textContent = `${PLACES.length} locations`;
 
   PLACES.forEach((place) => {
     const button = document.createElement("button");
