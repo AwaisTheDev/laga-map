@@ -202,10 +202,15 @@ function placeAtPoint(clientX, clientY) {
   return null;
 }
 
-// Artwork groups are named "<number>. <label>", e.g. `1. Gym`.
+// Artwork groups are named "<number>. <label>", e.g. `1. Gym`. Illustrator
+// exports escape those names, so `1. Gym` arrives as `_x31_._Gym`.
+function decodeGroupId(id) {
+  return id.replace(/_x([0-9a-f]{2,6})_/gi, (_, hex) => String.fromCodePoint(parseInt(hex, 16)));
+}
+
 function tagPlaceGroups(svg) {
   svg.querySelectorAll("g[id]").forEach((group) => {
-    const match = /^(\d+)\.\s/.exec(group.id);
+    const match = /^(\d+)\.[\s_]/.exec(decodeGroupId(group.id));
     if (!match) return;
 
     const id = Number(match[1]);
