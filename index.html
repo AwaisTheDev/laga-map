@@ -16,9 +16,33 @@
     />
     <link rel="stylesheet" href="styles.css" />
     <script>
-      // Marks the document when it runs inside an iframe, so the map fills the
-      // frame the host page sized instead of imposing its own aspect ratio.
-      if (window.self !== window.top) document.documentElement.classList.add("is-embedded");
+      (function () {
+        // Marks the document when it runs inside an iframe, so the map fills the
+        // frame the host page sized instead of imposing its own aspect ratio.
+        if (window.self !== window.top) document.documentElement.classList.add("is-embedded");
+
+        // embed.js passes the host site's typography on the URL. Applied here,
+        // before first paint, so the map never flashes its own fonts first.
+        var params = new URLSearchParams(location.search);
+        var familyPattern = /^[\w\s"',.-]{1,200}$/;
+
+        ["body", "heading"].forEach(function (slot) {
+          var family = params.get("font-" + slot);
+          if (family && familyPattern.test(family)) {
+            document.documentElement.style.setProperty("--font-" + slot, family);
+          }
+        });
+
+        // Family names alone only render if the faces exist here too, so the
+        // loader also forwards the host's font stylesheets.
+        params.getAll("font-css").slice(0, 4).forEach(function (href) {
+          if (href.slice(0, 8) !== "https://") return;
+          var link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href = href;
+          document.head.appendChild(link);
+        });
+      })();
     </script>
   </head>
   <body>

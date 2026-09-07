@@ -1,5 +1,9 @@
 :root {
   color-scheme: light;
+  /* Defaults for the standalone page. When embedded, the loader script passes
+     the host site's typography in and these are overridden. */
+  --font-body: "DM Sans", sans-serif;
+  --font-heading: "DM Serif Display", serif;
   --ink: #243025;
   --muted: #748078;
   --canvas: #f4f2ee;
@@ -18,7 +22,7 @@ body {
   margin: 0;
   color: var(--ink);
   background: var(--canvas);
-  font-family: "DM Sans", sans-serif;
+  font-family: var(--font-body);
 }
 
 button {
@@ -167,7 +171,9 @@ p {
   bottom: 20px;
   left: 20px;
   display: flex;
-  width: min(320px, calc(100% - 40px));
+  /* Roomy enough that the longest label still fits when the host site's font
+     is wider than the map's own. */
+  width: min(348px, calc(100% - 40px));
   max-height: calc(100% - 40px);
   flex-direction: column;
   overflow: hidden;
@@ -196,7 +202,7 @@ p {
 }
 
 .legend-title {
-  font-family: "DM Serif Display", serif;
+  font-family: var(--font-heading);
   font-size: 19px;
   letter-spacing: 0.01em;
   line-height: 1.1;
@@ -422,7 +428,7 @@ p {
 
 .place-card h2 {
   margin-bottom: 5px;
-  font-family: "DM Serif Display", serif;
+  font-family: var(--font-heading);
   font-size: 20px;
   font-weight: 400;
   line-height: 1.1;
