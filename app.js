@@ -14,7 +14,14 @@ const PLACES = [
   },
   { id: 3, name: "Padel Courts", type: "Activities", description: "The padel court complex near the main resort entrance." },
   { id: 4, name: "Security Post", type: "Services", description: "The security post at the resort's northern entrance." },
-  { id: 5, name: "Fire Pit", type: "Lounge", description: "An open-air fire pit between the wellness facilities and the club pool." },
+  {
+    id: 5,
+    name: "Fire Pit",
+    type: "Lounge",
+    description: "An open-air fire pit between the wellness facilities and the club pool.",
+    // Offset up and right so the pin does not cover the pit itself.
+    marker: [368, 202],
+  },
   { id: 6, name: "Club Pool", type: "Pool", description: "A quiet pool at the heart of the wellness and dining courtyard." },
   { id: 7, name: "Wellness Facilities", type: "Wellness", description: "Wellness facilities set beside the club pool and gardens." },
   { id: 8, name: "Sunset Bar", type: "Food & drink", description: "A small bar overlooking the ocean-facing edge of the resort." },
