@@ -180,7 +180,7 @@ p {
   flex-direction: column;
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: 6px;
   background: var(--panel);
   box-shadow: var(--shadow);
   backdrop-filter: blur(16px);
@@ -277,7 +277,7 @@ p {
   gap: 8px;
   padding: 5px 6px;
   border: 0;
-  border-radius: 8px;
+  border-radius: 4px;
   text-align: left;
   background: transparent;
   cursor: pointer;
@@ -330,7 +330,7 @@ p {
   gap: 4px;
   padding: 5px;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 6px;
   background: var(--panel);
   box-shadow: var(--shadow);
   backdrop-filter: blur(16px);
@@ -343,7 +343,7 @@ p {
   height: 36px;
   place-items: center;
   border: 0;
-  border-radius: 10px;
+  border-radius: 4px;
   background: transparent;
   font-size: 19px;
   cursor: pointer;
@@ -355,7 +355,7 @@ p {
 
 .reset-button {
   border-top: 1px solid var(--line);
-  border-radius: 0 0 10px 10px;
+  border-radius: 0 0 4px 4px;
   color: var(--muted);
   font-size: 11px;
   font-weight: 500;
@@ -369,7 +369,7 @@ p {
   top: 0;
   left: 0;
   padding: 5px 10px;
-  border-radius: 999px;
+  border-radius: 4px;
   color: white;
   background: rgba(26, 26, 26, 0.88);
   box-shadow: 0 4px 14px rgba(26, 26, 26, 0.24);
@@ -396,7 +396,7 @@ p {
   gap: 12px;
   padding: 15px 38px 15px 15px;
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: 6px;
   background: var(--panel);
   box-shadow: var(--shadow);
   backdrop-filter: blur(16px);
