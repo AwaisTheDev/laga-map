@@ -1,17 +1,19 @@
 :root {
   color-scheme: light;
-  /* Defaults for the standalone page. When embedded, the loader script passes
-     the host site's typography in and these are overridden. */
-  --font-body: "DM Sans", sans-serif;
-  --font-heading: "DM Serif Display", serif;
-  --ink: #243025;
-  --muted: #748078;
-  --canvas: #f4f2ee;
+  /* Matches the Laga site: Erode headings, Geist UI text. When embedded, the
+     loader script passes the host site's own families in over these. */
+  --font-body: Geist, sans-serif;
+  --font-heading: Erode, Georgia, serif;
+  /* Headings on the site run at 400 with tight negative tracking. */
+  --heading-tracking: -0.06em;
+  --ink: #1a1a1a;
+  --muted: #6f6f6f;
+  --canvas: #f4f3f1;
   --panel: rgba(255, 255, 255, 0.94);
-  --line: rgba(36, 48, 37, 0.1);
-  --accent: #9b322d;
-  --accent-dark: #72201d;
-  --shadow: 0 16px 44px rgba(45, 51, 43, 0.14);
+  --line: rgba(26, 26, 26, 0.1);
+  --accent: #800001;
+  --accent-dark: #5a0001;
+  --shadow: 0 16px 44px rgba(26, 26, 26, 0.12);
 }
 
 * {
@@ -138,9 +140,9 @@ p {
   border-radius: 50%;
   color: white;
   background: var(--accent);
-  box-shadow: 0 3px 8px rgba(69, 25, 22, 0.34);
-  font-size: 9px;
-  font-weight: 700;
+  box-shadow: 0 3px 8px rgba(90, 0, 1, 0.34);
+  font-size: 10px;
+  font-weight: 600;
   line-height: 1;
   pointer-events: auto;
   transform: translate(-50%, -50%);
@@ -152,7 +154,7 @@ p {
 .map-marker:focus-visible {
   z-index: 2;
   background: var(--accent-dark);
-  box-shadow: 0 5px 13px rgba(69, 25, 22, 0.4);
+  box-shadow: 0 5px 13px rgba(90, 0, 1, 0.4);
   outline: 0;
   transform: translate(-50%, -50%) scale(1.16);
 }
@@ -161,7 +163,7 @@ p {
   z-index: 3;
   color: var(--accent);
   background: white;
-  box-shadow: 0 0 0 4px rgba(155, 50, 45, 0.2), 0 5px 14px rgba(69, 25, 22, 0.35);
+  box-shadow: 0 0 0 4px rgba(128, 0, 1, 0.2), 0 5px 14px rgba(90, 0, 1, 0.35);
   transform: translate(-50%, -50%) scale(1.22);
 }
 
@@ -173,7 +175,7 @@ p {
   display: flex;
   /* Roomy enough that the longest label still fits when the host site's font
      is wider than the map's own. */
-  width: min(348px, calc(100% - 40px));
+  width: min(376px, calc(100% - 40px));
   max-height: calc(100% - 40px);
   flex-direction: column;
   overflow: hidden;
@@ -203,16 +205,17 @@ p {
 
 .legend-title {
   font-family: var(--font-heading);
-  font-size: 19px;
-  letter-spacing: 0.01em;
-  line-height: 1.1;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: var(--heading-tracking);
+  line-height: 1;
 }
 
 .legend-count {
   color: var(--muted);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.13em;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
@@ -282,12 +285,12 @@ p {
 }
 
 .legend-item:hover {
-  background: rgba(36, 48, 37, 0.05);
+  background: rgba(26, 26, 26, 0.05);
 }
 
 .legend-item.is-active {
   color: var(--accent-dark);
-  background: rgba(155, 50, 45, 0.09);
+  background: rgba(128, 0, 1, 0.09);
 }
 
 .legend-number {
@@ -296,12 +299,12 @@ p {
   height: 21px;
   flex: 0 0 auto;
   place-items: center;
-  border: 1px solid rgba(155, 50, 45, 0.28);
+  border: 1px solid rgba(128, 0, 1, 0.28);
   border-radius: 50%;
   color: var(--accent);
   background: white;
-  font-size: 9px;
-  font-weight: 700;
+  font-size: 10px;
+  font-weight: 600;
 }
 
 .legend-item.is-active .legend-number {
@@ -312,8 +315,8 @@ p {
 
 .legend-label {
   overflow: hidden;
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 400;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -335,7 +338,8 @@ p {
 
 .icon-button {
   display: grid;
-  width: 36px;
+  /* Wide enough for the uppercase Reset label the site's button style calls for. */
+  width: 46px;
   height: 36px;
   place-items: center;
   border: 0;
@@ -346,16 +350,17 @@ p {
 }
 
 .icon-button:hover {
-  background: rgba(36, 48, 37, 0.06);
+  background: rgba(26, 26, 26, 0.06);
 }
 
 .reset-button {
   border-top: 1px solid var(--line);
   border-radius: 0 0 10px 10px;
   color: var(--muted);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .hover-label {
@@ -366,10 +371,10 @@ p {
   padding: 5px 10px;
   border-radius: 999px;
   color: white;
-  background: rgba(46, 30, 28, 0.88);
-  box-shadow: 0 4px 14px rgba(46, 30, 28, 0.24);
-  font-size: 11px;
-  font-weight: 600;
+  background: rgba(26, 26, 26, 0.88);
+  box-shadow: 0 4px 14px rgba(26, 26, 26, 0.24);
+  font-size: 12px;
+  font-weight: 500;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
@@ -413,32 +418,33 @@ p {
   border-radius: 50%;
   color: white;
   background: var(--accent);
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .place-type {
-  margin-bottom: 3px;
+  margin-bottom: 4px;
   color: var(--accent);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
 .place-card h2 {
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   font-family: var(--font-heading);
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 400;
-  line-height: 1.1;
+  letter-spacing: var(--heading-tracking);
+  line-height: 1;
 }
 
 .place-card p:last-child {
   margin-bottom: 0;
   color: var(--muted);
-  font-size: 12px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.4;
 }
 
 .card-close {
@@ -460,7 +466,7 @@ p {
 
 .card-close:hover {
   color: var(--ink);
-  background: rgba(36, 48, 37, 0.06);
+  background: rgba(26, 26, 26, 0.06);
 }
 
 @keyframes card-in {
@@ -480,6 +486,12 @@ p {
     left: 14px;
     width: min(300px, calc(100% - 78px));
     max-height: calc(100% - 28px);
+  }
+
+  /* Two columns would clip the longer names at this width, so the list runs
+     as a single scrolling column instead. */
+  .legend-list {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .map-controls {

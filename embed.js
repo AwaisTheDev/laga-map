@@ -26,7 +26,7 @@
 
   // Providers whose stylesheets carry only @font-face rules, so forwarding them
   // into the frame cannot disturb the map's own layout.
-  var FONT_PROVIDERS = /^(fonts\.googleapis\.com|use\.typekit\.net|fonts\.bunny\.net|fonts\.cdnfonts\.com)$/;
+  var FONT_PROVIDERS = /^(fonts\.googleapis\.com|use\.typekit\.net|fonts\.bunny\.net|fonts\.cdnfonts\.com|api\.fontshare\.com)$/;
 
   function familyOf(element, fallback) {
     if (!element) return fallback;
