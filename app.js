@@ -400,6 +400,7 @@ function selectPlace(id) {
   placeDescription.textContent = place.description;
   placeCard.hidden = false;
   positionCard();
+  requestAnimationFrame(positionCard);
   setHover(hoverId);
 }
 
