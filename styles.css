@@ -345,18 +345,17 @@ p {
   grid-template-columns: 92px minmax(0, 1fr);
   gap: 12px;
   padding: 10px;
-  border: 1px solid transparent;
+  border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
-  box-shadow: var(--shadow);
   scroll-snap-align: start;
   text-align: left;
   cursor: pointer;
-  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+  transition: border-color 160ms ease, transform 160ms ease;
 }
 
 .slider-card:hover {
-  box-shadow: 0 12px 30px rgba(26, 26, 26, 0.12);
+  border-color: rgba(26, 26, 26, 0.2);
 }
 
 .slider-card:focus-visible {
@@ -366,7 +365,6 @@ p {
 
 .slider-card.is-active {
   border-color: var(--accent);
-  box-shadow: 0 12px 30px rgba(128, 0, 1, 0.12);
 }
 
 .slider-thumb {
