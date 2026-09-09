@@ -3,40 +3,151 @@ const VIEWBOX = { width: 1476, height: 794 };
 
 // `marker` is only needed where a group is missing or its bounding box centre
 // lands outside the shape it labels (long clipped paths, L-shaped plots).
+// Optional `image` paths sit under /images/ and show as the slider thumbnail.
 const PLACES = [
-  { id: 1, name: "Gym", type: "Wellness", description: "The resort fitness space at the northern end of the property." },
+  {
+    id: 1,
+    name: "Gym",
+    type: "Wellness",
+    description: "A light-filled training space designed for strength, mobility and everyday performance.",
+    image: "images/01-gym.jpg",
+  },
   {
     id: 2,
-    name: "Cafe",
+    name: "Padel Cafe",
     type: "Food & drink",
-    description: "A relaxed cafe beside the main recreation building.",
+    description: "Fresh coffee, cold drinks and relaxed bites overlooking the energy of the padel courts.",
+    image: "images/02-padel-cafe.jpg",
     marker: [507, 93],
   },
-  { id: 3, name: "Padel Courts", type: "Activities", description: "The padel court complex near the main resort entrance." },
-  { id: 4, name: "Security Post", type: "Services", description: "The security post at the resort's northern entrance." },
+  {
+    id: 3,
+    name: "Padel Courts",
+    type: "Activities",
+    description: "Five covered international-standard courts for coaching, tournaments, social play and every level of player.",
+    image: "images/03-padel-courts.jpg",
+  },
+  {
+    id: 4,
+    name: "Security Post",
+    type: "Services",
+    description: "A discreet, professionally managed entrance providing controlled access and around-the-clock site security.",
+    image: "images/04-security-post.jpg",
+  },
   {
     id: 5,
     name: "Fire Pit",
     type: "Lounge",
-    description: "An open-air fire pit between the wellness facilities and the club pool.",
+    description: "A relaxed gathering place to thaw out after an ice bath.",
+    image: "images/05-fire-pit.jpg",
     // Sit just off the top-right of the pit so the fire stays visible.
     marker: [358, 216],
   },
-  { id: 6, name: "Club Pool", type: "Pool", description: "A quiet pool at the heart of the wellness and dining courtyard." },
-  { id: 7, name: "Wellness Facilities", type: "Wellness", description: "Wellness facilities set beside the club pool and gardens." },
-  { id: 8, name: "Sunset Bar", type: "Food & drink", description: "A small bar overlooking the ocean-facing edge of the resort." },
-  { id: 9, name: "Restaurant", type: "Food & drink", description: "The main restaurant, arranged around the central courtyard." },
-  { id: 10, name: "Parking", type: "Arrival", description: "Guest parking close to reception and the main entrance." },
-  { id: 11, name: "Kids Play Area", type: "Activities", description: "A dedicated play area tucked between the restaurant and gardens." },
-  { id: 12, name: "Resort Reception", type: "Arrival", description: "The central reception for arrivals, assistance and resort information." },
-  { id: 13, name: "Villa Aruna", type: "Villa", description: "The Villa Aruna residences in the upper villa garden." },
-  { id: 14, name: "Wooden Walkway", type: "Path", description: "The ocean-side wooden walkway connecting the resort grounds." },
-  { id: 15, name: "Villa Laga", type: "Villa", description: "The Villa Laga residences in the central garden." },
-  { id: 16, name: "Villa Muara", type: "Villa", description: "The Villa Muara residences closest to the beach garden." },
-  { id: 17, name: "Beachfront Pool", type: "Pool", description: "The long beachfront pool with views toward the ocean." },
-  { id: 18, name: "The Beach Shack", type: "Food & drink", description: "The beachside pavilion at the eastern end of the resort." },
-  { id: 19, name: "The Beach", type: "Beach", description: "The resort's sandy beachfront and lounging area." },
-  { id: 20, name: "The Groove Groin", type: "Landmark", description: "The stone groin defining the southern edge of the beachfront." },
+  {
+    id: 6,
+    name: "Club Pool",
+    type: "Pool",
+    description: "A tropical social pool where guests can swim, unwind and spend the day together.",
+    image: "images/06-club-pool.jpg",
+  },
+  {
+    id: 7,
+    name: "Wellness",
+    type: "Wellness",
+    description: "A restorative space featuring saunas, ice baths and dedicated areas for recovery and relaxation.",
+    image: "images/07-wellness.jpg",
+  },
+  {
+    id: 8,
+    name: "Bar",
+    type: "Food & drink",
+    description: "An open-air bar for relaxed drinks, golden-hour gatherings and Lombok’s spectacular sunsets.",
+    image: "images/08-bar.jpg",
+  },
+  {
+    id: 9,
+    name: "Restaurant",
+    type: "Food & drink",
+    description: "Fresh, nourishing food served in a relaxed tropical setting overlooking the pool and gardens.",
+    image: "images/09-restaurant.jpg",
+  },
+  {
+    id: 10,
+    name: "Parking",
+    type: "Arrival",
+    description: "Convenient, landscaped parking positioned close to the club entrance and main facilities.",
+    image: "images/10-parking.jpg",
+  },
+  {
+    id: 11,
+    name: "Kid Play",
+    type: "Activities",
+    description: "A safe space designed with natural materials for Laga’s youngest guests.",
+    image: "images/11-kid-play.jpg",
+  },
+  {
+    id: 12,
+    name: "Resort Reception",
+    type: "Arrival",
+    description: "The welcoming arrival point for residents and guests, offering assistance throughout their stay.",
+    image: "images/12-resort-reception.jpg",
+  },
+  {
+    id: 13,
+    name: "Villa Aruna",
+    type: "Villa",
+    description: "Spacious two-bedroom pool villas created for relaxed family living, longer stays and effortless entertaining.",
+    image: "images/13-villa-aruna.jpg",
+  },
+  {
+    id: 14,
+    name: "Wooden Walkway",
+    type: "Path",
+    description: "A landscaped timber boardwalk connecting the residences and resort facilities directly to the beach.",
+    image: "images/14-wooden-walkway.jpg",
+  },
+  {
+    id: 15,
+    name: "Villa Laga",
+    type: "Villa",
+    description: "A collection of beautifully designed one-bedroom hotel suites within the heart of the Laga destination.",
+    image: "images/15-villa-laga.jpg",
+  },
+  {
+    id: 16,
+    name: "Villa Muara",
+    type: "Villa",
+    description: "Private one-bedroom beachfront pool villas designed for couples, retreats and relaxed tropical living.",
+    image: "images/16-villa-muara.jpg",
+  },
+  {
+    id: 17,
+    name: "Beach Front Pool",
+    type: "Pool",
+    description: "A peaceful pool overlooking the coastline, reserved for guests staying within the beachfront residences and using the beach shack.",
+    image: "images/17-beachfront-pool.jpg",
+  },
+  {
+    id: 18,
+    name: "The Beach Shack",
+    type: "Food & drink",
+    description: "A casual beachside spot for refreshments, laid-back afternoons and barefoot gatherings by the ocean.",
+    image: "images/18-beach-shack.jpg",
+  },
+  {
+    id: 19,
+    name: "The Beach",
+    type: "Beach",
+    description: "Direct access to Kuta Bay for morning walks, swimming, sunset views and days beside the sea.",
+    image: "images/19-the-beach.jpg",
+  },
+  {
+    id: 20,
+    name: "The Groove Groin",
+    type: "Landmark",
+    description: "A distinctive coastal viewpoint where the river, beach and ocean landscape come together.",
+    image: "images/20-groove-groin.jpg",
+  },
 ];
 
 const FILTER_MARKUP = `
@@ -73,23 +184,20 @@ const FILTER_MARKUP = `
   </filter>
 `;
 
-const list = document.querySelector("#legend-list");
-const legendCount = document.querySelector("#legend-count");
 const markerLayer = document.querySelector("#marker-layer");
 const mapArt = document.querySelector("#map-art");
 const mapPanel = document.querySelector("#map-section");
-const placeCard = document.querySelector("#place-card");
-const placeType = document.querySelector("#place-type");
-const placeName = document.querySelector("#place-name");
-const placeDescription = document.querySelector("#place-description");
+const mapStage = document.querySelector(".map-stage");
 const hoverLabel = document.querySelector("#hover-label");
 const viewport = document.querySelector("#map-viewport");
 const canvas = document.querySelector("#map-canvas");
-const legend = document.querySelector("#legend");
-const legendToggle = document.querySelector("#legend-toggle");
+const sliderTrack = document.querySelector("#slider-track");
+const sliderPrev = document.querySelector("#slider-prev");
+const sliderNext = document.querySelector("#slider-next");
 
 const groups = new Map();
 const markers = new Map();
+const cards = new Map();
 
 // Maps every point of the artwork to the place that owns it, so hit-testing
 // never depends on which decorative path happens to be painted on top.
@@ -105,6 +213,10 @@ let drag = null;
 
 function placeById(id) {
   return PLACES.find((place) => place.id === id);
+}
+
+function padNumber(id) {
+  return String(id).padStart(2, "0");
 }
 
 async function loadMap() {
@@ -266,7 +378,7 @@ function buildMarkers() {
     marker.style.left = `${(point[0] / VIEWBOX.width) * 100}%`;
     marker.style.top = `${(point[1] / VIEWBOX.height) * 100}%`;
     marker.textContent = String(place.id);
-    marker.setAttribute("aria-label", `Open ${place.name}`);
+    marker.setAttribute("aria-label", `Select ${place.name}`);
     markerLayer.append(marker);
     markers.set(place.id, marker);
   });
@@ -286,27 +398,59 @@ function markerPoint(place) {
   }
 }
 
-function renderLegend() {
-  list.replaceChildren();
-  legendCount.textContent = `${PLACES.length} locations`;
+function renderSlider() {
+  sliderTrack.replaceChildren();
+  cards.clear();
 
   PLACES.forEach((place) => {
     const button = document.createElement("button");
     button.type = "button";
-    button.className = "legend-item";
+    button.className = "slider-card";
     button.dataset.locationId = String(place.id);
+    button.setAttribute("aria-label", `${padNumber(place.id)} ${place.name}`);
+
+    const thumb = document.createElement("div");
+    thumb.className = "slider-thumb";
+
+    if (place.image) {
+      const image = document.createElement("img");
+      image.src = place.image;
+      image.alt = "";
+      image.loading = "lazy";
+      thumb.append(image);
+    } else {
+      const fallback = document.createElement("span");
+      fallback.className = "slider-thumb-fallback";
+      fallback.textContent = padNumber(place.id);
+      thumb.append(fallback);
+    }
+
+    const body = document.createElement("div");
+    body.className = "slider-body";
+
+    const titleRow = document.createElement("div");
+    titleRow.className = "slider-title-row";
 
     const number = document.createElement("span");
-    number.className = "legend-number";
-    number.textContent = String(place.id);
+    number.className = "slider-number";
+    number.textContent = padNumber(place.id);
 
-    const label = document.createElement("span");
-    label.className = "legend-label";
-    label.textContent = place.name;
+    const name = document.createElement("span");
+    name.className = "slider-name";
+    name.textContent = place.name;
 
-    button.append(number, label);
-    list.append(button);
+    const description = document.createElement("p");
+    description.className = "slider-description";
+    description.textContent = place.description;
+
+    titleRow.append(number, name);
+    body.append(titleRow, description);
+    button.append(thumb, body);
+    sliderTrack.append(button);
+    cards.set(place.id, button);
   });
+
+  updateSliderNav();
 }
 
 function setHover(id, event) {
@@ -319,14 +463,13 @@ function setHover(id, event) {
     }
   }
 
-  // The card already names the active place, so the pill would only repeat it.
   const showLabel = id !== null && id !== activeId;
   hoverLabel.classList.toggle("is-visible", showLabel);
   if (showLabel) positionHoverLabel(id, event);
 }
 
 function positionHoverLabel(id, event) {
-  const panel = mapPanel.getBoundingClientRect();
+  const panel = mapStage.getBoundingClientRect();
   const label = hoverLabel.getBoundingClientRect();
 
   let centerX;
@@ -336,10 +479,11 @@ function positionHoverLabel(id, event) {
     centerX = event.clientX;
     top = event.clientY - 16;
   } else {
-    const anchor = anchorRect(id);
-    if (!anchor) return;
-    centerX = anchor.centerX;
-    top = anchor.top - 12;
+    const source = markers.get(id) ?? groups.get(id);
+    if (!source) return;
+    const rect = source.getBoundingClientRect();
+    centerX = rect.left + rect.width / 2;
+    top = rect.top - 12;
   }
 
   const x = clamp(centerX - panel.left, label.width / 2 + 8, panel.width - label.width / 2 - 8);
@@ -348,59 +492,17 @@ function positionHoverLabel(id, event) {
   hoverLabel.style.transform = `translate(${x}px, ${y}px) translate(-50%, -100%)`;
 }
 
-function anchorRect(id) {
-  // Markers sit at the centre of each group, which keeps the card close to the
-  // shape even for sprawling areas like the beach or the walkway.
-  const source = markers.get(id) ?? groups.get(id);
-  if (!source) return null;
-
-  const rect = source.getBoundingClientRect();
-  if (!rect.width && !rect.height) return null;
-
-  return { centerX: rect.left + rect.width / 2, top: rect.top, bottom: rect.bottom };
-}
-
-function positionCard() {
-  if (activeId === null || placeCard.hidden) return;
-
-  const anchor = anchorRect(activeId);
-  const panel = mapPanel.getBoundingClientRect();
-  const card = placeCard.getBoundingClientRect();
-
-  if (!anchor) {
-    placeCard.style.transform = `translate(${panel.width - card.width - 18}px, ${panel.height - card.height - 18}px)`;
-    return;
-  }
-
-  const left = clamp(anchor.centerX - panel.left - card.width / 2, 14, panel.width - card.width - 14);
-  const above = anchor.top - panel.top - card.height - 16;
-  const below = anchor.bottom - panel.top + 16;
-  const top = above >= 14 ? above : clamp(below, 14, panel.height - card.height - 14);
-
-  placeCard.style.transform = `translate(${left}px, ${top}px)`;
-}
-
-function selectPlace(id) {
+function selectPlace(id, { scroll = true } = {}) {
   const place = placeById(id);
   if (!place) return;
 
   activeId = id;
-  // The legend and an open location card compete for the same corner of the
-  // map, so only one of them is ever shown.
-  setLegendOpen(false);
 
   groups.forEach((group, groupId) => group.classList.toggle("is-active", groupId === id));
   markers.forEach((marker, markerId) => marker.classList.toggle("is-active", markerId === id));
-  list.querySelectorAll(".legend-item").forEach((item) => {
-    item.classList.toggle("is-active", Number(item.dataset.locationId) === id);
-  });
+  cards.forEach((card, cardId) => card.classList.toggle("is-active", cardId === id));
 
-  placeType.textContent = place.type;
-  placeName.textContent = place.name;
-  placeDescription.textContent = place.description;
-  placeCard.hidden = false;
-  positionCard();
-  requestAnimationFrame(positionCard);
+  if (scroll) scrollCardIntoView(id);
   setHover(hoverId);
 }
 
@@ -408,16 +510,36 @@ function clearSelection() {
   activeId = null;
   groups.forEach((group) => group.classList.remove("is-active"));
   markers.forEach((marker) => marker.classList.remove("is-active"));
-  list.querySelectorAll(".legend-item").forEach((item) => item.classList.remove("is-active"));
-  placeCard.hidden = true;
+  cards.forEach((card) => card.classList.remove("is-active"));
   setHover(hoverId);
+}
+
+function scrollCardIntoView(id) {
+  const card = cards.get(id);
+  if (!card) return;
+
+  const trackRect = sliderTrack.getBoundingClientRect();
+  const cardRect = card.getBoundingClientRect();
+  const left = sliderTrack.scrollLeft + (cardRect.left - trackRect.left) - (trackRect.width - cardRect.width) / 2;
+  sliderTrack.scrollTo({ left: Math.max(0, left), behavior: "smooth" });
+}
+
+function updateSliderNav() {
+  const max = sliderTrack.scrollWidth - sliderTrack.clientWidth;
+  sliderPrev.disabled = sliderTrack.scrollLeft <= 4;
+  sliderNext.disabled = sliderTrack.scrollLeft >= max - 4;
+}
+
+function scrollSlider(direction) {
+  const amount = Math.max(220, sliderTrack.clientWidth * 0.7);
+  sliderTrack.scrollBy({ left: direction * amount, behavior: "smooth" });
 }
 
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), Math.max(min, max));
 }
 
-// Fits the artwork inside the section, but never below a legible width on
+// Fits the artwork inside the stage, but never below a legible width on
 // narrow screens, where the map stays pannable instead.
 function fitCanvas() {
   const { width, height } = viewport.getBoundingClientRect();
@@ -435,7 +557,6 @@ function updateTransform() {
   fitCanvas();
   viewport.classList.toggle("is-zoomed", zoom > 1);
   canvas.style.transform = `translate(calc(-50% + ${panX}px), calc(-50% + ${panY}px)) scale(${zoom})`;
-  positionCard();
   if (hoverId !== null) positionHoverLabel(hoverId);
 }
 
@@ -448,26 +569,12 @@ function setZoom(next) {
   updateTransform();
 }
 
-function resetMap() {
-  zoom = 1;
-  panX = 0;
-  panY = 0;
-  updateTransform();
-  clearSelection();
-}
-
-function setLegendOpen(open) {
-  legend.dataset.open = String(open);
-  legendToggle.setAttribute("aria-expanded", String(open));
-  if (open && activeId !== null) clearSelection();
-}
-
 function locationIdFrom(target) {
   const owner = target.closest?.("[data-location-id]");
   return owner ? Number(owner.dataset.locationId) : null;
 }
 
-// Markers and legend rows carry their own id; anywhere else on the map is
+// Markers and slider cards carry their own id; anywhere else on the map is
 // resolved through the hit map rather than the topmost painted element.
 function mapIdFromEvent(event) {
   const marker = event.target.closest?.(".map-marker");
@@ -476,17 +583,20 @@ function mapIdFromEvent(event) {
 }
 
 function wireEvents() {
-  list.addEventListener("click", (event) => {
+  sliderTrack.addEventListener("click", (event) => {
     const id = locationIdFrom(event.target);
     if (id !== null) selectPlace(id);
   });
 
-  list.addEventListener("pointerover", (event) => {
+  sliderTrack.addEventListener("pointerover", (event) => {
     if (event.pointerType === "touch") return;
     setHover(locationIdFrom(event.target));
   });
 
-  list.addEventListener("pointerleave", () => setHover(null));
+  sliderTrack.addEventListener("pointerleave", () => setHover(null));
+  sliderTrack.addEventListener("scroll", updateSliderNav, { passive: true });
+  sliderPrev.addEventListener("click", () => scrollSlider(-1));
+  sliderNext.addEventListener("click", () => scrollSlider(1));
 
   let hoverFrame = null;
   viewport.addEventListener("pointermove", (event) => {
@@ -544,7 +654,7 @@ function wireEvents() {
   const endDrag = (event) => {
     if (!drag || drag.pointerId !== event.pointerId) return;
     viewport.classList.remove("is-dragging");
-    // Cleared after the click event so a drag never opens a popup.
+    // Cleared after the click event so a drag never opens a selection.
     window.setTimeout(() => {
       drag = null;
     }, 0);
@@ -555,12 +665,12 @@ function wireEvents() {
 
   document.querySelector("#zoom-in").addEventListener("click", () => setZoom(zoom + 0.25));
   document.querySelector("#zoom-out").addEventListener("click", () => setZoom(zoom - 0.25));
-  document.querySelector("#reset-map").addEventListener("click", resetMap);
-  document.querySelector("#card-close").addEventListener("click", clearSelection);
-  legendToggle.addEventListener("click", () => setLegendOpen(legend.dataset.open !== "true"));
   // Observing the section rather than the window also catches an iframe or a
   // fluid layout resizing the map while the window itself stays put.
-  new ResizeObserver(() => updateTransform()).observe(mapPanel);
+  new ResizeObserver(() => {
+    updateTransform();
+    updateSliderNav();
+  }).observe(mapPanel);
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") clearSelection();
@@ -568,10 +678,7 @@ function wireEvents() {
 }
 
 async function start() {
-  renderLegend();
-  // Phones and the embed's narrow breakpoints start with the legend closed so
-  // it does not cover the artwork. Desktop keeps it open as a directory.
-  setLegendOpen(mapPanel.clientWidth > 720);
+  renderSlider();
   wireEvents();
   updateTransform();
 
@@ -579,6 +686,8 @@ async function start() {
     await loadMap();
     buildMarkers();
     buildHitMap();
+    updateTransform();
+    selectPlace(PLACES[0].id, { scroll: false });
   } catch (error) {
     mapArt.innerHTML = `<p class="load-error">The map artwork could not be loaded. Serve this folder over HTTP and reload.</p>`;
     console.error(error);

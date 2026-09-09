@@ -52,42 +52,33 @@
   </head>
   <body>
     <section class="map-section" id="map-section" aria-label="Interactive resort map">
-      <div class="map-viewport" id="map-viewport">
-        <div class="map-canvas" id="map-canvas">
-          <div class="map-art" id="map-art" role="img" aria-label="Illustrated aerial map of Wilson's World resort"></div>
-          <div class="marker-layer" id="marker-layer"></div>
+      <div class="map-stage">
+        <div class="map-viewport" id="map-viewport">
+          <div class="map-canvas" id="map-canvas">
+            <div class="map-art" id="map-art" role="img" aria-label="Illustrated aerial map of Wilson's World resort"></div>
+            <div class="marker-layer" id="marker-layer"></div>
+          </div>
         </div>
+
+        <div class="map-controls" aria-label="Map controls">
+          <button class="icon-button" id="zoom-in" type="button" aria-label="Zoom in">+</button>
+          <button class="icon-button" id="zoom-out" type="button" aria-label="Zoom out">&minus;</button>
+        </div>
+
+        <div class="hover-label" id="hover-label" aria-hidden="true"></div>
       </div>
 
-      <div class="legend" id="legend" data-open="false">
-        <button class="legend-toggle" id="legend-toggle" type="button" aria-expanded="false" aria-controls="legend-body">
-          <span class="legend-heading">
-            <span class="legend-title">Legend</span>
-            <span class="legend-count" id="legend-count"></span>
-          </span>
-          <svg class="legend-chevron" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="m6 9 6 6 6-6" />
-          </svg>
+      <div class="place-slider" id="place-slider">
+        <button class="slider-nav" id="slider-prev" type="button" aria-label="Previous locations">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 6-6 6 6 6" /></svg>
         </button>
-        <div class="legend-body" id="legend-body">
-          <nav class="legend-list" id="legend-list" aria-label="Map locations"></nav>
+        <div class="slider-viewport">
+          <nav class="slider-track" id="slider-track" aria-label="Map locations"></nav>
         </div>
+        <button class="slider-nav" id="slider-next" type="button" aria-label="Next locations">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg>
+        </button>
       </div>
-
-      <div class="map-controls" aria-label="Map controls">
-        <button class="icon-button" id="zoom-in" type="button" aria-label="Zoom in">+</button>
-        <button class="icon-button" id="zoom-out" type="button" aria-label="Zoom out">&minus;</button>
-        <button class="icon-button reset-button" id="reset-map" type="button" aria-label="Reset map view">Reset</button>
-      </div>
-
-      <div class="hover-label" id="hover-label" aria-hidden="true"></div>
-
-      <article class="place-card" id="place-card" role="dialog" aria-live="polite" aria-labelledby="place-name" hidden>
-        <button class="card-close" id="card-close" type="button" aria-label="Close location details">&times;</button>
-        <p class="place-type" id="place-type"></p>
-        <h2 id="place-name"></h2>
-        <p id="place-description"></p>
-      </article>
     </section>
 
     <script src="app.js"></script>
