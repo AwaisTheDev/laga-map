@@ -498,13 +498,21 @@ p {
   }
 
   .map-heading {
-    top: 12px;
-    left: 12px;
-    max-width: min(280px, calc(100% - 96px));
+    position: relative;
+    top: auto;
+    left: auto;
+    max-width: none;
+    padding: 14px 16px 10px;
+    flex: 0 0 auto;
+  }
+
+  .map-heading-title {
+    font-size: 26px;
   }
 
   .map-heading-lead {
-    margin-top: 8px;
+    margin-top: 6px;
+    max-width: none;
     font-size: 12px;
     line-height: 1.4;
   }
