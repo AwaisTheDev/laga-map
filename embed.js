@@ -15,8 +15,8 @@
  *   data-font-css      extra font stylesheet URLs, comma separated
  *   data-aspect        wide-screen ratio      (default: 1476 / 794)
  *   data-aspect-md     <= 900px ratio         (default: 3 / 2)
- *   data-aspect-sm     <= 600px ratio         (default: 3 / 4)
- *   data-min-height    <= 600px min height    (default: 460px)
+ *   data-aspect-sm     <= 600px ratio         (default: 1 / 1)
+ *   data-min-height    <= 600px min height    (default: 400px)
  */
 (function () {
   var script = document.currentScript;
@@ -90,8 +90,8 @@
       "background:var(--laga-background,#f4f2ee);}",
       ".laga-map-embed>iframe{display:block;width:100%;height:100%;border:0;}",
       "@media(max-width:900px){.laga-map-embed{aspect-ratio:var(--laga-aspect-md,3/2);}}",
-      "@media(max-width:600px){.laga-map-embed{aspect-ratio:var(--laga-aspect-sm,3/4);",
-      "min-height:var(--laga-min-height,460px);}}",
+      "@media(max-width:600px){.laga-map-embed{aspect-ratio:var(--laga-aspect-sm,1/1);",
+      "min-height:var(--laga-min-height,400px);}}",
     ].join("");
     document.head.appendChild(styles);
   }
